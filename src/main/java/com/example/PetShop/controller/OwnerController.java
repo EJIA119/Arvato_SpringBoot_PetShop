@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.ValidationException;
@@ -44,8 +45,8 @@ public class OwnerController {
     }
 
     @GetMapping("/owner/findById/{id}")
-    public Owner findById(@PathVariable("id") Integer id) throws ValidationException {
-        return ownerService.findById(id);
+    public ResponseEntity<Owner> findById(@PathVariable("id") Integer id) throws ValidationException {
+        return ResponseEntity.ok(ownerService.findById(id));
     }
 
     @GetMapping("/owner/findPetByOwnerId/{id}")
